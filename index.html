@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width" />
+    <meta property="og:description" content="Beautify your code">
+    <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/480px-Unofficial_JavaScript_logo_2.svg.png">
+    <title>Online Javascript Beautifier</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.13.13/beautify.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.13.13/beautify-css.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.13.13/beautify-html.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <center>
+        <h1 style="color: green;" id="tl">Online Javascript Beautifier</h1>
+        <label for="lang">Beautify </label>
+        <select name="language" id="language">
+            <option value="Javascript">Javascript</option>
+            <option value="HTML">HTML</option>
+            <option value="CSS">CSS</option>
+        </select>
+        <br /><br /><textarea id="source_code" rows="30" cols="160" style="scrollbar=both;"></textarea><br />
+        <button id="beautify">Beautify</button>
+        <button id="copy">Copy To Clipboard</button>
+        <button id="clear" onclick='$("#source_code").val("")'>Clear</button>
+    </center>
+</body>
+<script>
+    $(document).ready(function() {
+        $("#language").change(function() {
+            $("#tl").text("Online " + $(this).val() + " Beautifier");
+        });
+        $("#beautify").click(function() {
+            const txt = $("#source_code").val().trim();
+            if (txt == "") alert("Please enter a value.");
+            else {
+                let res;
+                switch ($("#language option:selected").val()) {
+                    case "Javascript":
+                        res = js_beautify(txt);
+                        break;
+                    case "HTML":
+                        res = html_beautify(txt);
+                        break;
+                    case "CSS":
+                        res = css_beautify(txt);
+                }
+                $("#source_code").val(res);
+            }
+        });
+        $("#copy").click(function() {
+            const sc = $("#source_code");
+            if (sc.val().trim() == "") alert("Please enter a value.");
+            else {
+                sc.select();
+                document.execCommand("copy");
+                alert("Copied!");
+            }
+        });
+    });
+</script>
+<style>
+    textarea {
+        padding: 10px;
+        line-height: 1.5;
+        border-radius: 12px;
+        border: 1px solid #ccc;
+        box-shadow: 1px 1px 1px #999;
+    }
+
+    button {
+        background-color: #4CAF50;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 12px;
+        position: relative;
+        height: 50px;
+    }
+
+    button:hover {
+        background: #FFF;
+        color: #1AAB8A;
+    }
+
+    button:before,
+    button:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 2px;
+        width: 0;
+        background: #1AAB8A;
+        transition: 400ms ease all;
+    }
+
+    button:after {
+        right: inherit;
+        top: inherit;
+        left: 0;
+        bottom: 0;
+    }
+
+    button:hover:before,
+    button:hover:after {
+        width: 100%;
+        transition: 800ms ease all;
+    }
+</style>
+
+</html>
