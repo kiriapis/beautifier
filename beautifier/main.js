@@ -1,12 +1,17 @@
 $(document).ready(function() {
+    // 언어 변경 감지
     $("#language").change(function() {
-        $("#tl").text("Online " + $(this).val() + " Beautifier");
+        var language = $(this).val();
+        $("#tl").text("Online " + language + " Beautifier");
     });
+    // beautify 클릭
     $("#beautify").click(function() {
-        const txt = $("#source_code").val().trim();
-        if (txt == "") alert("Please enter a value.");
-        else {
-            let res;
+        var txt = $("#source_code");
+        if ($.trim(txt.val()) == "") {
+            alert("Please enter a value.");
+            txt.focus();
+        } else {
+            var res;
             switch ($("#language option:selected").val()) {
                 case "Javascript":
                     res = js_beautify(txt);
@@ -20,10 +25,13 @@ $(document).ready(function() {
             $("#source_code").val(res);
         }
     });
+    // 복사
     $("#copy").click(function() {
-        const sc = $("#source_code");
-        if (sc.val().trim() == "") alert("Please enter a value.");
-        else {
+        var sc = $("#source_code");
+        if ($.trim(sc.val()) == "") {
+            alert("Please enter a value.");
+            sc.focus();
+        } else {
             sc.select();
             document.execCommand("copy");
             alert("Copied!");
