@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $("#submit").click(function() {
+    $("#login").click(function() {
         var email = $.trim($("#email").val());
         var password = $.trim($("#password").val());
         
