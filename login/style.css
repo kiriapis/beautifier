@@ -23,7 +23,7 @@ body {
 
 .text-field {
     font-size: 14px;
-    padding: 10px;
+    padding: 12px;
     border: none;
     width: 260px;
     margin-bottom: 10px;
@@ -32,9 +32,40 @@ body {
 .submit-btn {
     font-size: 14px;
     border: none;
-    padding: 10px;
+    padding: 12px;
     width: 260px;
     background-color: #1BBC9B;
     margin-bottom: 30px;
     color: white;
+    position: relative;
+}
+
+button:hover {
+    background: #FFF;
+    color: #1AAB8A;
+}
+
+button:before,
+button:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 2px;
+    width: 0;
+    background: #1AAB8A;
+    transition: 400ms ease all;
+}
+
+button:after {
+    right: inherit;
+    top: inherit;
+    left: 0;
+    bottom: 0;
+}
+
+button:hover:before,
+button:hover:after {
+    width: 100%;
+    transition: 800ms ease all;
 }
