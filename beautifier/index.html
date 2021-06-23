@@ -22,10 +22,12 @@
             <option value="HTML">HTML</option>
             <option value="CSS">CSS</option>
         </select>
-        <br /><br /><textarea id="source_code" rows="30" cols="160" style="scrollbar=both;"></textarea><br />
-        <button id="beautify">Beautify</button>
-        <button id="copy">Copy To Clipboard</button>
-        <button id="clear" onclick='$("#source_code").val("")'>Clear</button>
+        <div class="beautify-form">
+            <textarea id="source_code" rows="30" cols="160" style="scrollbar=both;"></textarea><br />
+            <button id="beautify">Beautify</button>
+            <button id="copy">Copy To Clipboard</button>
+            <button id="clear" onclick='$("#source_code").val("")'>Clear</button>
+        </div>
     </center>
 </body>
 <script src="main.js"></script>
