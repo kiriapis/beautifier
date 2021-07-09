@@ -28,10 +28,10 @@ $(document).ready(function () {
                 type: "GET",
                 dataType: "json",
                 success: function (data) {
-                    document.write(data);
+                    document.write(JSON.stringify(data, null, 4));
                 },
-                error: function (request, status, error) {
-                    alert("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
+                error: function () {
+                    alert("요청에 실패하였습니다.");
                 }
             });
         }
